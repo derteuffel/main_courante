@@ -3,6 +3,7 @@ package com.derteuffel.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import java.util.Set;
 
 /**
@@ -34,6 +35,9 @@ public class Evenement implements Serializable {
     private Observation observation;
     @ManyToOne
     private Equipe equipe;
+
+    @OneToMany(mappedBy = "evenement")
+    private List<Materiel> materiels;
 
     public Evenement() {
     }
@@ -123,6 +127,14 @@ public class Evenement implements Serializable {
 
     public Set<User> getUsers() {
         return users;
+    }
+
+    public List<Materiel> getMateriels() {
+        return materiels;
+    }
+
+    public void setMateriels(List<Materiel> materiels) {
+        this.materiels = materiels;
     }
 
     public void setUsers(Set<User> users) {

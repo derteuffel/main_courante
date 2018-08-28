@@ -1,7 +1,5 @@
 package com.derteuffel.entities;
 
-import org.apache.catalina.LifecycleState;
-
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.List;
@@ -30,6 +28,9 @@ public class Equipe implements Serializable {
     @OneToMany(mappedBy = "equipe")
     private List<Evenement> evenements;
 
+    @OneToMany(mappedBy = "equipe")
+    private List<User> users;
+
     public Equipe() {
     }
 
@@ -38,6 +39,15 @@ public class Equipe implements Serializable {
         this.matricule_secretaire = matricule_secretaire;
         this.matricule_chauffeur = matricule_chauffeur;
         this.matricule_chef = matricule_chef;
+    }
+
+
+    public List<User> getUsers() {
+        return users;
+    }
+
+    public void setUsers(List<User> users) {
+        this.users = users;
     }
 
     public Long getId() {

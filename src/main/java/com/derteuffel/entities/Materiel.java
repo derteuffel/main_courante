@@ -19,6 +19,12 @@ public abstract class Materiel implements Serializable {
     @Column
     private String marque, nature,couleur;
 
+    @ManyToOne
+    private Evenement evenement;
+
+    @ManyToOne
+    private User user;
+
     public Materiel() {
     }
 
@@ -28,6 +34,14 @@ public abstract class Materiel implements Serializable {
         this.couleur=couleur;
     }
 
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 
     public String getCouleur() {
         return couleur;
@@ -59,5 +73,13 @@ public abstract class Materiel implements Serializable {
 
     public void setNature(String nature) {
         this.nature = nature;
+    }
+
+    public Evenement getEvenement() {
+        return evenement;
+    }
+
+    public void setEvenement(Evenement evenement) {
+        this.evenement = evenement;
     }
 }
