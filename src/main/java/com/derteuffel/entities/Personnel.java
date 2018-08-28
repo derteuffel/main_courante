@@ -1,5 +1,6 @@
 package com.derteuffel.entities;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import java.util.Date;
 
@@ -10,7 +11,10 @@ import java.util.Date;
 @Entity
 public class Personnel extends User {
 
-    private String matricule, grade, fonction;
+    @Column
+    private String matricule, grade, fonction,status;
+
+    @Column
     private Date date_prise_service;
 
     public Personnel() {
@@ -18,12 +22,21 @@ public class Personnel extends User {
 
     public Personnel(String nom, String prenom, String telephone, String NCNI, String profession,
                      String lieu_de_naissance, Date date_naissance, String matricule, String grade,
-                     String fonction, Date date_prise_service) {
+                     String fonction, Date date_prise_service,String status) {
         super(nom, prenom, telephone, NCNI, profession, lieu_de_naissance, date_naissance);
         this.matricule = matricule;
         this.grade = grade;
         this.fonction = fonction;
         this.date_prise_service = date_prise_service;
+        this.status=status;
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 
     public String getMatricule() {
