@@ -27,8 +27,8 @@ public class Engin extends Materiel {
     public Engin() {
     }
 
-    public Engin(String marque, String nature, String couleur, String numero_chassis, String genre, String imatriculation) {
-        super(marque, nature, couleur);
+    public Engin(String marque, String type, String couleur, String status, String numero_chassis, String genre, String imatriculation) {
+        super(marque, type, couleur, status);
         this.numero_chassis = numero_chassis;
         this.genre = genre;
         this.imatriculation = imatriculation;

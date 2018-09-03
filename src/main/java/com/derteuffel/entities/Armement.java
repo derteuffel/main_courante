@@ -20,8 +20,8 @@ public class Armement extends Materiel {
     public Armement() {
     }
 
-    public Armement(String marque, String nature, String couleur, String numero, String genre, int calibre) {
-        super(marque, nature, couleur);
+    public Armement(String marque, String type, String couleur,String status, String numero, String genre, int calibre) {
+        super(marque, type, couleur, status);
         this.numero = numero;
         this.genre = genre;
         this.calibre = calibre;

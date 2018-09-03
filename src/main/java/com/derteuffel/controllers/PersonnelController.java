@@ -3,6 +3,7 @@ package com.derteuffel.controllers;
 import com.derteuffel.entities.Personnel;
 import com.derteuffel.ressources.PersonelRessources;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -37,7 +38,7 @@ public class PersonnelController {
     }
 
     @GetMapping("/personnel")
-    public List<Personnel> getAllPersonnel() {
+    public Iterable<Personnel> getAllPersonnel() {
         return personelRessources.getAllPersonnel();
     }
 

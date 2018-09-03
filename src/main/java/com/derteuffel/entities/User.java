@@ -20,7 +20,7 @@ public abstract class User implements Serializable {
     private Long id;
 
     @Column
-    private String nom, prenom, telephone, NCNI,profession, lieu_de_naissance;
+    private String nom, prenom, telephone, NCNI,profession, lieu_de_naissance, empreinte_digit;
 
     @Column
     private Date date_naissance;
@@ -39,7 +39,7 @@ public abstract class User implements Serializable {
     public User() {
     }
 
-    public User(String nom, String prenom, String telephone, String NCNI, String profession, String lieu_de_naissance, Date date_naissance) {
+    public User(String nom, String prenom, String empreinte_digit, String NCNI, String profession, String lieu_de_naissance, Date date_naissance) {
         this.nom = nom;
         this.prenom = prenom;
         this.telephone = telephone;
@@ -47,17 +47,26 @@ public abstract class User implements Serializable {
         this.profession = profession;
         this.lieu_de_naissance = lieu_de_naissance;
         this.date_naissance = date_naissance;
+        this.empreinte_digit=empreinte_digit;
     }
 
-    public Equipe getEquipes() {
+    public String getEmpreinte_digit() {
+        return empreinte_digit;
+    }
+
+    public void setEmpreinte_digit(String empreinte_digit) {
+        this.empreinte_digit = empreinte_digit;
+    }
+
+    public Equipe getEquipe() {
         return equipe;
     }
 
-    public void setEquipes(Equipe equipe) {
+    public void setEquipe(Equipe equipe) {
         this.equipe = equipe;
     }
 
-    public List<Materiel> getMateriels() {
+       public List<Materiel> getMateriels() {
         return materiels;
     }
 

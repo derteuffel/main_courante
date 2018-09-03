@@ -17,7 +17,9 @@ public abstract class Materiel implements Serializable {
     private Long id;
 
     @Column
-    private String marque, nature,couleur;
+    private String marque, type,couleur;
+    @Column
+    private  String status;
 
     @ManyToOne
     private Evenement evenement;
@@ -28,12 +30,21 @@ public abstract class Materiel implements Serializable {
     public Materiel() {
     }
 
-    public Materiel(String marque, String nature,String couleur) {
+    public Materiel(String marque, String type, String couleur, String status) {
         this.marque = marque;
-        this.nature = nature;
+        this.type = type;
         this.couleur=couleur;
+        this.status=status;
     }
 
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
 
     public User getUser() {
         return user;
@@ -67,12 +78,12 @@ public abstract class Materiel implements Serializable {
         this.marque = marque;
     }
 
-    public String getNature() {
-        return nature;
+    public String getType() {
+        return type;
     }
 
-    public void setNature(String nature) {
-        this.nature = nature;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Evenement getEvenement() {
