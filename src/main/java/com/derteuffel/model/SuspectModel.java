@@ -26,10 +26,10 @@ public class SuspectModel {
     @Autowired
     private SuspectRessources suspectRessources;
 
-    @GetMapping("/suspects")
+    @GetMapping("/suspects/get")
     public String getAllSuspect(Model model) {
 
-        model.addAttribute("suspects",suspectRessources.getAllSuspect() );
+        model.addAttribute("suspects",suspectRessources.findAll() );
         return "suspect/list";
     }
 
@@ -44,7 +44,7 @@ public class SuspectModel {
     @GetMapping("/suspect/form, /suspect/form/{id}")
     public String suspectEditForm(Model model, @PathVariable(required = false, name = "id") Long id){
         if (id != null){
-            model.addAttribute("suspect", suspectRessources.getSuspect(id));
+            model.addAttribute("suspect", suspectRessources.findById(id));
         }else {
             model.addAttribute("suspect", new Suspect());
         }
@@ -53,7 +53,7 @@ public class SuspectModel {
     @PostMapping("/suspects/save")
     public String save(Model model, @RequestBody Suspect suspect) {
         suspectRessources.save(suspect);
-        model.addAttribute("suspects", suspectRessources.getAllSuspect());
+        model.addAttribute("suspects", suspectRessources.findAll());
 
         return "suspect/list";
     }
@@ -61,23 +61,23 @@ public class SuspectModel {
 
     @GetMapping("/suspects/delete/{id}")
     public String deleteSuspect(@PathVariable(name = "id") Long id, Model model) {
-        suspectRessources.deleteSuspect(id);
+        suspectRessources.deleteById(id);
 
-        model.addAttribute("suspects", suspectRessources.getAllSuspect());
+        model.addAttribute("suspects", suspectRessources.findAll());
         return "suspect/list";
     }
 
-    @GetMapping("/suspects/get/dept/{departement_d_origine}")
-    public String getAllByDepartement_d_origine(@PathVariable(name = "departement_d_origine") String departement_d_origine, Model model) {
-        model.addAttribute("suspects", suspectRessources.getAllByDepartement_d_origine(departement_d_origine));
+    @GetMapping("/suspects/get/dept/{departement}")
+    public String findByDepartement(@PathVariable(name = "departement") String departement, Model model) {
+        model.addAttribute("suspects", suspectRessources.findByDepartement(departement));
 
         return "suspect/list";
     }
 
-    @GetMapping("/suspects/get/sti/{situation}")
+    @GetMapping("/suspects/get/sit/{situation}")
     public String getAllBySituation(@PathVariable(name = "situation") String situation, Model model) {
 
-        model.addAttribute("suspects", suspectRessources.getAllBySituation(situation));
+        model.addAttribute("suspects", suspectRessources.findBySituation(situation));
 
         return"suspect/list";
     }
@@ -85,7 +85,7 @@ public class SuspectModel {
     @GetMapping("/suspects/get/{id}")
     public String getSuspect(@PathVariable(name = "id") Long id, Model model) {
 
-        model.addAttribute("suspect", suspectRessources.getSuspect(id));
+        model.addAttribute("suspect", suspectRessources.findById(id));
         return "suspect/view";
     }
 }

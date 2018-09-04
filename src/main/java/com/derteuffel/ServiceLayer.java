@@ -33,19 +33,53 @@ public class ServiceLayer {
     @Autowired
     private Autre_MaterielRessources autre_materielRessources;
 
+    @Autowired
+    private SuspectRessources suspectRessources;
+
+    @Autowired
+    private RequerantRessources requerantRessources;
+
+    @Autowired
+    private EquipeRessources equipeRessources;
+
+    @Autowired
+    private EvenementRessources evenementRessources;
+
+    @Autowired
+    private UserRessources userRessources;
+
 
     @EventListener(ApplicationReadyEvent.class)
     public void initializeTestData() {
         LOGGER.info("Initialize test data");
+/*evenementRessources.save(new Evenement("en123","nature","saisine","lieu","commentaire","type", new Date()));
+        evenementRessources.save(new Evenement("124","nature","saisine","lieu","commentaire","type", new Date()));
+        evenementRessources.save(new Evenement("sqhjds","nature","saisine","lieu","commentaire","type", new Date()));
+        evenementRessources.save(new Evenement("csdkjklù","nature","saisine","lieu","commentaire","type", new Date()));
+        evenementRessources.save(new Evenement("dkjfz","nature","saisine","lieu","commentaire","type", new Date()));
+        evenementRessources.save(new Evenement("kezfj","nature","saisine","lieu","commentaire","type", new Date()));
+        evenementRessources.save(new Evenement("zkejfi","nature","saisine","lieu","commentaire","type", new Date()));
+
+        equipeRessources.save(new Equipe(new String[]{"dbjkfhsf", "hjfhjs","dfssdjhds"},"14521","25447","kdjshjkhf"));
+        equipeRessources.save(new Equipe(new String[]{"dbjkfhsf", "hjfhjs","dfssdjhds"},"14521","25447","kdjshjkhf"));
+        equipeRessources.save(new Equipe(new String[]{"dbjkfhsf", "hjfhjs","dfssdjhds"},"14521","25447","kdjshjkhf"));
+
+        suspectRessources.save(new Suspect("dfsdf","sdssff","cdsfsf","zffeff","dssfsfdf","sdffdfs",new Date(),"sdffsf",
+                "fsfddf","dfsdf","sdssff","cdsfsf","zffeff","dssfsfdf","sdffdfs","sdffsf","dfsdf","sdssff","cdsfsf"));
+
+        suspectRessources.save(new Suspect("dfsdf","sdssff","cdsfsf","zffeff","dssfsfdf","sdffdfs",new Date(),"sdffsf",
+                "fsfddf","dfsdf","sdssff","cdsfsf","zffeff","dssfsfdf","sdffdfs","sdffsf","dfsdf","sdssff","cdsfsf"));
+
+        suspectRessources.save(new Suspect("dfsdf","sdssff","cdsfsf","zffeff","dssfsfdf","sdffdfs",new Date(),"sdffsf",
+                "fsfddf","dfsdf","sdssff","cdsfsf","zffeff","dssfsfdf","sdffdfs","sdffsf","dfsdf","sdssff","cdsfsf"));
+
+        suspectRessources.save(new Suspect("dfsdf","sdssff","cdsfsf","zffeff","dssfsfdf","sdffdfs",new Date(),"sdffsf",
+                "fsfddf","dfsdf","sdssff","cdsfsf","zffeff","dssfsfdf","sdffdfs","sdffsf","dfsdf","sdssff","cdsfsf"));
+*/
 
 
-  //      personelRessources.addPersonnel(new Personnel("afana", "rene", "666666", "17N54", "ingenieur", "", new Date(), "", "", "", new Date(), "en fonction"));
-    //    personelRessources.addPersonnel(new Personnel("Metou", "rene", "666666", "17N54", "developpeur", "", new Date(), "", "", "", new Date(), "en fonction"));
-      //  personelRessources.addPersonnel(new Personnel("Nkomozo", "rene", "666666", "17N54", "ingenieur", "", new Date(), "", "", "", new Date(), "affecter"));
-        //personelRessources.addPersonnel(new Personnel("Mr le nye", "rene", "666666", "17N54", "ingenieur", "", new Date(), "", "", "", new Date(), "en fonction"));
 
-
-        enginRessources.saveEngin(new Engin("toyota","voiture","rouge","decharger","N124","4 palces","23541287"));
+       /* enginRessources.saveEngin(new Engin("toyota","voiture","rouge","decharger","N124","4 palces","23541287"));
         enginRessources.saveEngin(new Engin("hyunday","voiture","rouge","stocker","N124","4 palces","23541287"));
 
         armementRessources.saveArmement(new Armement("pistolet","arme a feu","noir","decharge","1245M","canon 128mm",new Integer(123)));
@@ -56,7 +90,7 @@ public class ServiceLayer {
 
         autre_materielRessources.saveAutre_Materiel(new Autre_Materiel("couteau","arme blanche","gris","stocker","147","egorgeur"));
         autre_materielRessources.saveAutre_Materiel(new Autre_Materiel("couteau","arme blanche","gris","stocker","147","egorgeur"));
-        autre_materielRessources.saveAutre_Materiel(new Autre_Materiel("couteau","arme blanche","gris","stocker","147","egorgeur"));
+        autre_materielRessources.saveAutre_Materiel(new Autre_Materiel("couteau","arme blanche","gris","stocker","147","egorgeur"));*/
 
         LOGGER.info("Initialize test completed");
 

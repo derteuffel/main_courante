@@ -33,13 +33,13 @@ public class UserModel {
     public String findByEvenement(@PathVariable(name = "id") Long id, Model model) {
         model.addAttribute("users",userRessources.findByEvenement(id));
 
-        return "user/list";
+        return "evenement/user/list";
     }
 
     @GetMapping("/users/get/equipe/{id}")
     public String findByEquipe(@PathVariable(name = "id") Long id, Model model) {
         model.addAttribute("users", userRessources.findByEquipe(id));
 
-        return "user/list";
+        return "equipe/user/list";
     }
 }

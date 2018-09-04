@@ -17,7 +17,7 @@ import java.util.Set;
 public interface PersonnelRepository extends JpaRepository<Personnel, Long> {
 
    public List<Personnel> findByStatus(String status);
-   public Set<Personnel> findByEvenement(Long id);
+   public Set<Personnel> findByEvenements(Long id);
 
 
 }

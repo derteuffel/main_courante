@@ -1,65 +1,21 @@
-
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
       xmlns="http://www.w3.org/1999/xhtml">
 <head lang="en">
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 
-
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-
-    <link href="../static/css/bootstrap.min.css"
-          th:href="@{/css/bootstrap.min.css}"
-          rel="stylesheet" media="screen" />
-
-    <script src="../static/js/jquery.js"
-            th:src="@{/js/jquery.js}"></script>
-
-    <script src="../static/js/bootstrap.js"
-            th:src="@{/js/bootstrap.js}"></script>
-
-
+    <title >Listes des Evenements</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 
 </head>
 <body>
 
-<!--div layout:fragment="content"-->
-
-    <h2 class="alert alert-info" role="info">Personnel</h2>
-
-    <!--div th:if="${message}" class="alert alert-success" role="alert">
-        <p th:text="${message}">success message</p>
-    </div-->
-    <div class="container container-fluid">
-        <table class="table table-striped">
-            <thead>
-            <tr>
-                <th>Nom</th>
-                <th>Prenom</th>
-                <th>Fonction</th>
-                <th>N° CNI</th>
-                <th>Suprimer</th>
-            </tr>
-            </thead>
-            <tbody>
-            <tr th:each="personnel : ${personnels}">
-                <td th:text="${personnel.nom}">nom</td>
-                <td th:text="${personnel.prenom}">prenom</td>
-                <td th:text="${personnel.profession}">profession</td>
-                <td th:text="${personnel.NCNI}">NCNI</td>
-                <td><a href="#" th:href="@{/personnelDelete/} + ${personnel.id}" class="btn btn-danger">Suprimer</a></td>
-            </tr>
-            </tbody>
-        </table>
-    </div>
-    <a th:href="@{/personnelForm}" class="btn btn-primary">Nouveau Personnel</a>
-    <br/><br/>
-
-    <p th:if="${personnels.size() == 0}">
-    <div class="alert alert-warning" role="alert">Aucun personnel trouver.</div>
-    </p>
-
-</div>
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<script  src="../js/jquery.js"
+th:src="@{/js/jquery.js}"></script>
+<script  src="../js/materialize.min.js"
+th:src="@{/js/materialize.min.js}"></script>
+<script  src="../js/init.js"
+th:src="@{/js/init.js}"></script>
 
 </body>
 </html>

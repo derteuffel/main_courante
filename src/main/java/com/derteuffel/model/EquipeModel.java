@@ -23,11 +23,11 @@ public class EquipeModel {
     @Autowired
     private EquipeRessources equipeRessources;
 
-    @GetMapping("/equipes/get/evenement/{id}")
+    /*@GetMapping("/equipes/get/evenement/{id}")
     public String findByEvenements(@PathVariable(name = "id") Long id, Model model) {
         model.addAttribute("equipe", equipeRessources.findByEvenements(id));
         return "evenement/equipe/list";
-    }
+    }*/
 
     @GetMapping("/equipes/delete/{id}")
     public String deleteById(@PathVariable(name = "id") Long id, Model model) {

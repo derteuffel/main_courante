@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns="http://www.w3.org/1999/xhtml">
+<head lang="en">
+
+    <title >Listes des Evenements</title>
+    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+
+
 </head>
 <body>
+
+<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+
+<script  src="../js/jquery.js"
+         th:src="@{/js/jquery.js}"></script>
+<script  src="../js/materialize.min.js"
+         th:src="@{/js/materialize.min.js}"></script>
+<script  src="../js/init.js"
+         th:src="@{/js/init.js}"></script>
 
 </body>
 </html>

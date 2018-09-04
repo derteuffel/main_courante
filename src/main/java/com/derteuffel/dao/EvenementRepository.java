@@ -14,7 +14,7 @@ import java.util.Set;
 @Repository
 public interface EvenementRepository  extends JpaRepository<Evenement, Long>{
 
-    Set<Evenement> findByUser(Long id);
+    Set<Evenement> findByUsers(Long id);
     List<Evenement> findByNature(String nature);
     List<Evenement> findBySaisine(String saisine);
     Set<Evenement>findByEquipe(Long id);

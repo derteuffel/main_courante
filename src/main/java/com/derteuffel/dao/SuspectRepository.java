@@ -18,5 +18,5 @@ public interface SuspectRepository extends JpaRepository<Suspect, Long> {
 
     List<Suspect> findByStatus(String status);
     List<Suspect> findBySituation(String situation);
-    List<Suspect> findByDepartement_d_origine(String departement_d_origine);
+    List<Suspect> findByDepartement(String departement);
 }

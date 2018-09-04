@@ -87,6 +87,7 @@ public class Equipe implements Serializable {
     }
 
     public void setMatricule_element(String[] matricule_element) {
+
         this.matricule_element = matricule_element;
     }
 

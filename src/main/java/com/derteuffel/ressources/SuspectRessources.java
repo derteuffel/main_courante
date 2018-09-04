@@ -23,24 +23,7 @@ public class SuspectRessources {
     private SuspectRepository suspectRepository;
 
 
-    public List<Suspect> getAllSuspect() {
-        return suspectRepository.findAll();
-    }
-
-    public List<Suspect> getAllByDepartement_d_origine(String departement_d_origine) {
-
-        Iterable<Suspect> suspects=suspectRepository.findAll();
-        List<Suspect> result= new ArrayList<>();
-        for (Suspect suspect:suspects) {
-            if (suspect.getDepartement_d_origine().equalsIgnoreCase(departement_d_origine)) {
-                result.add(suspect);
-            }
-
-        }
-        return result;
-    }
-
-    public List<Suspect> getAllBySituation(String situation) {
+    public List<Suspect> findBySituation(String situation) {
         Iterable<Suspect> suspects=suspectRepository.findAll();
         List<Suspect> result= new ArrayList<>();
         for (Suspect suspect:suspects) {
@@ -53,7 +36,24 @@ public class SuspectRessources {
             }
         }
         return result;
+    }
 
+
+
+    public List<Suspect> findByDepartement(String departement) {
+        Iterable<Suspect> suspects=suspectRepository.findAll();
+        List<Suspect> result= new ArrayList<>();
+        for (Suspect suspect:suspects) {
+            if (suspect.getDepartement().equalsIgnoreCase(departement)) {
+                result.add(suspect);
+            }
+
+        }
+        return result;
+    }
+
+    public List<Suspect> findAll() {
+        return suspectRepository.findAll();
     }
 
     public List<Suspect> findByStatus(String status) {
@@ -75,7 +75,7 @@ public class SuspectRessources {
         return suspectRepository.save(suspect);
     }
 
-    public Suspect getSuspect(Long id) {
+    public Suspect findById(Long id) {
 
         Optional<Suspect> suspectOptional=suspectRepository.findById(id);
 
@@ -85,7 +85,7 @@ public class SuspectRessources {
 
 
 
-    public void deleteSuspect(Long id) {
+    public void deleteById(Long id) {
         suspectRepository.deleteById(id);
     }
 }

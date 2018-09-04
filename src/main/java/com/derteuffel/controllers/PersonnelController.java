@@ -22,27 +22,27 @@ public class PersonnelController {
     private PersonelRessources personelRessources;
 
 
-    @GetMapping("/personnel/{id}")
+    @GetMapping("/personnels/get/{id}")
     public Personnel getPersonel(@PathVariable Long id) {
         return personelRessources.getPersonel(id);
     }
 
-    @DeleteMapping("/personnel/{id}")
+    @DeleteMapping("/personnels/delete/{id}")
     public void deletePersonnel(@PathVariable Long id) {
         personelRessources.deletePersonnel(id);
     }
 
-    @GetMapping("/personnels/{status}")
+    @GetMapping("/personnels/get/{status}")
     public List<Personnel> findByStatus(@PathVariable String status) {
         return personelRessources.findByStatus(status);
     }
 
-    @GetMapping("/personnel")
+    @GetMapping("/personnels/get")
     public Iterable<Personnel> getAllPersonnel() {
         return personelRessources.getAllPersonnel();
     }
 
-    @PostMapping("/personnel")
+    @PostMapping("/personnels/save")
     public Personnel addPersonnel(@RequestBody Personnel personnel) {
         return personelRessources.addPersonnel(personnel);
     }

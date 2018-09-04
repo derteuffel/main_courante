@@ -23,13 +23,13 @@ public class EquipeRessources {
     @Autowired
     private EvenementRepository evenementRepository;
 
-    public Equipe findByEvenements(Long id) {
+   /* public Equipe findByEvenements(Long id) {
         Optional<Evenement> evenementOptional= evenementRepository.findById(id);
 
         Equipe equipe= evenementOptional.get().getEquipe();
 
         return equipe;
-    }
+    }*/
 
     public List<Equipe> findAll() {
         return equipeRepository.findAll();
