@@ -57,7 +57,7 @@ public class EquipeModel {
     }
 
     @PostMapping("/equipes/save")
-    public String save(@RequestBody Equipe equipe, Model model) {
+    public String save( Equipe equipe, Model model) {
 
          equipeRessources.save(equipe);
 

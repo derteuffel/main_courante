@@ -46,7 +46,7 @@ public class EvenementModel {
     }
 
     @PostMapping("/evenements/save")
-    public String save(@RequestBody Evenement evenement, Model model) {
+    public String save( Evenement evenement, Model model) {
 
         model.addAttribute("evenements", evenementRessources.findAll());
          evenementRessources.save(evenement);

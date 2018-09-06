@@ -42,7 +42,7 @@ public class ArmementModel {
     }
 
     @PostMapping("/armements/save")
-    public String saveArmement(@RequestBody Armement armement, Model model) {
+    public String saveArmement(Armement armement, Model model) {
         model.addAttribute("armements", armementRessources.getAllArmement());
         return "armement/list";
     }

@@ -47,7 +47,7 @@ public class RequerantModel {
     }
 
     @PostMapping("/requerants/save")
-    public String saveRequerant(@RequestBody Requerant requerant, Model model) {
+    public String saveRequerant( Requerant requerant, Model model) {
 
         requerantRessources.save(requerant);
 

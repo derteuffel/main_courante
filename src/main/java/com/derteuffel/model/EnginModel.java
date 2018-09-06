@@ -43,7 +43,7 @@ public class EnginModel {
     }
 
     @PostMapping("/engins/save")
-    public String saveEngin(@RequestBody Engin engin, Model model) {
+    public String saveEngin( Engin engin, Model model) {
         model.addAttribute("engins", enginRessources.getAllEngin());
         return "engin/list";
     }

@@ -45,7 +45,7 @@ public class Autre_MaterielModel {
     }
 
     @PostMapping("/autre_materiels/save")
-    public String saveAutre_materiel(@RequestBody Autre_Materiel autre_materiel, Model model) {
+    public String saveAutre_materiel( Autre_Materiel autre_materiel, Model model) {
         model.addAttribute("autre_materiels", autre_materielRessources.getAllAutre_Materiel());
         return "autre_materiel/list";
     }

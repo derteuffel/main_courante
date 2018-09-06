@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml">
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head lang="en">
 
     <title >Listes des Evenements</title>
@@ -10,6 +10,73 @@
 <body>
 
 <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<!--/*/ <th:block th:include="fragments/sideBar :: sideBar"></th:block> /*/-->
+
+<div layout:fragment="content">
+
+    <h2>Ajouter un nouvel armement</h2>
+
+<div class="row">
+    <form class="col s12" th:object="${armement}" th:action="@{/armements/save}" method="post">
+        <input type="hidden" th:field="*{id}" />
+        <div class="row">
+            <div class="input-field col s6">
+                <i class="material-icons prefix">turned_in</i>
+                <input  th:field="*{marque}" type="text" class="validate">
+                <label >Marque:</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">device_hub</i>
+                <select  th:field="*{type}">
+                    <option value = ""  selected>Choisissez un type d'armement</option>
+                    <option value="fjhsfjhj">fjdfhshs</option>
+                    <option value="lkfjfdh">dgffgjh</option>
+                </select>
+                <label >Type:</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">color_lens</i>
+                <input th:field="*{couleur}" type="text" class="validate">
+                <label >Couleur:</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">label</i>
+                <input th:field="*{status}" type="text" class="validate">
+                <label >Status</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">visibility</i>
+                <input th:field="*{numero}" type="text" class="validate">
+                <label >Numero</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">merge_type</i>
+                <input th:field="*{genre}" type="text" class="validate">
+                <label >Genre</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">class</i>
+                <input th:field="*{calibre}" type="number" class="validate">
+                <label >Calibre</label>
+            </div>
+            <div class="input-field col s6">
+                <i class="material-icons prefix">person</i>
+                <select  th:field="*{user}">
+                    <option value = "" disabled selected>Choisissez un utilisateur</option>
+                    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.nom+''+user.prenom}">Users</option>
+                </select>
+                <label >Utilisateur:</label>
+            </div>
+
+        </div>
+        <button class="btn waves-effect waves-light  " type="submit" name="action">Sauvegarder
+            <i class="material-icons right">send</i>
+        </button>
+    </form>
+
+</div>
+    </div>
+
 
 <script  src="../js/jquery.js"
          th:src="@{/js/jquery.js}"></script>

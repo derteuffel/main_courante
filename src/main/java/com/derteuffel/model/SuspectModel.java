@@ -51,7 +51,7 @@ public class SuspectModel {
         return "suspect/edit";
     }
     @PostMapping("/suspects/save")
-    public String save(Model model, @RequestBody Suspect suspect) {
+    public String save(Model model, Suspect suspect) {
         suspectRessources.save(suspect);
         model.addAttribute("suspects", suspectRessources.findAll());
 
