@@ -22,8 +22,20 @@ public class SuspectRessources {
     @Autowired
     private SuspectRepository suspectRepository;
 
+    public Page<Suspect> findByDepartement(String departement, Pageable pageable) {
+        return suspectRepository.findByDepartement(departement, pageable);
+    }
 
-    public List<Suspect> findBySituation(String situation) {
+    public Page<Suspect> findBySituation(String situation, Pageable pageable) {
+        return suspectRepository.findBySituation(situation, pageable);
+    }
+
+    public Page<Suspect> findByStatus(String status, Pageable pageable) {
+        return suspectRepository.findByStatus(status, pageable);
+    }
+
+
+    /* public List<Suspect> findBySituation(String situation) {
         Iterable<Suspect> suspects=suspectRepository.findAll();
         List<Suspect> result= new ArrayList<>();
         for (Suspect suspect:suspects) {
@@ -50,13 +62,13 @@ public class SuspectRessources {
 
         }
         return result;
+    }*/
+
+    public Page<Suspect> findAll(Pageable pageable) {
+        return suspectRepository.findAll(pageable);
     }
 
-    public List<Suspect> findAll() {
-        return suspectRepository.findAll();
-    }
-
-    public List<Suspect> findByStatus(String status) {
+  /*  public List<Suspect> findByStatus(String status) {
 
         Iterable<Suspect> suspects=suspectRepository.findAll();
         List<Suspect> result= new ArrayList<>();
@@ -69,7 +81,7 @@ public class SuspectRessources {
         }
         return result;
 
-    }
+    }*/
 
     public Suspect save(Suspect suspect) {
         return suspectRepository.save(suspect);

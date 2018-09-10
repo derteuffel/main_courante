@@ -4,13 +4,11 @@ import com.derteuffel.entities.Autre_Materiel;
 import com.derteuffel.ressources.Autre_MaterielRessources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by derteuffel on 01/09/2018.
@@ -25,8 +23,9 @@ public class Autre_MaterielModel {
     private Autre_MaterielRessources autre_materielRessources;
 
     @GetMapping("/autre_materiels/get")
-    public String   getAllAutre_materiel(Model model) {
-        model.addAttribute("autre_materiels",autre_materielRessources.getAllAutre_Materiel() );
+    public String   getAllAutre_materiel(Model model,  @RequestParam(defaultValue = "0")int page) {
+        model.addAttribute("autre_materiels",autre_materielRessources.getAllAutre_Materiel(new PageRequest(page,5)) );
+        model.addAttribute("currentPage", page);
         return "autre_materiel/list";
     }
 
@@ -45,19 +44,18 @@ public class Autre_MaterielModel {
     }
 
     @PostMapping("/autre_materiels/save")
-    public String saveAutre_materiel( Autre_Materiel autre_materiel, Model model) {
-        model.addAttribute("autre_materiels", autre_materielRessources.getAllAutre_Materiel());
-        return "autre_materiel/list";
+    public String saveAutre_materiel( Autre_Materiel autre_materiel) {
+        autre_materielRessources.saveAutre_Materiel(autre_materiel);
+
+        return "redirect:/autre_materiels/get";
     }
 
     @GetMapping("/autre_materiels/delete/{id}")
-    public String autre_materielDelete(Model model, @PathVariable(required = true, name = "id") Long id){
+    public String autre_materielDelete(@PathVariable(required = true, name = "id") Long id){
 
         autre_materielRessources.deleteAutre_Materiel(id);
 
-        model.addAttribute("autre_materiels", autre_materielRessources.getAllAutre_Materiel());
-
-        return "autre_materiel/list";
+        return "redirect:/autre_materiels/get";
     }
 
 

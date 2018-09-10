@@ -19,7 +19,7 @@ public class Evenement implements Serializable {
     private Long id;
 
     @Column
-    private String N_ordre, nature, saisine, lieu, commentaire, type;
+    private String n_ordre, nature, saisine, lieu, commentaire, type;
 
     @Column
     @Temporal(TemporalType.DATE)
@@ -43,7 +43,7 @@ public class Evenement implements Serializable {
     }
 
     public Evenement(String n_ordre, String nature,String type, String saisine, String lieu, String commentaire, Date heure_evenement) {
-        N_ordre = n_ordre;
+        this.n_ordre = n_ordre;
         this.type=type;
         this.nature = nature;
         this.saisine = saisine;
@@ -69,11 +69,11 @@ public class Evenement implements Serializable {
     }
 
     public String getN_ordre() {
-        return N_ordre;
+        return n_ordre;
     }
 
     public void setN_ordre(String n_ordre) {
-        N_ordre = n_ordre;
+        n_ordre = n_ordre;
     }
 
     public String getNature() {

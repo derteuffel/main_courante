@@ -3,6 +3,8 @@ package com.derteuffel.ressources;
 import com.derteuffel.dao.RequerantRepository;
 import com.derteuffel.entities.Requerant;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -19,8 +21,8 @@ public class RequerantRessources {
     private RequerantRepository requerantRepository;
 
 
-    public List<Requerant> findAll() {
-        return requerantRepository.findAll();
+    public Page<Requerant> findAll(Pageable pageable) {
+        return requerantRepository.findAll(pageable);
     }
 
     public Requerant save(Requerant requerant) {

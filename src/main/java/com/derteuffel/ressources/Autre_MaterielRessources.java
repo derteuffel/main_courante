@@ -22,8 +22,8 @@ public class Autre_MaterielRessources {
     private Autre_MaterielRepository autre_materielRepository;
 
 
-    public List<Autre_Materiel> getAllAutre_Materiel(){
-        return autre_materielRepository.findAll();
+    public Page<Autre_Materiel> getAllAutre_Materiel(Pageable pageable){
+        return autre_materielRepository.findAll(pageable);
     }
     public Autre_Materiel getAutre_Materiel(Long id){
         Optional<Autre_Materiel> autre_materielOptional=autre_materielRepository.findById(id);

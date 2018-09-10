@@ -3,6 +3,7 @@ package com.derteuffel.model;
 import com.derteuffel.entities.Requerant;
 import com.derteuffel.ressources.RequerantRessources;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -21,18 +22,19 @@ public class RequerantModel {
 
 
     @GetMapping("/requerants/get")
-    public String getAllRequerant(Model model) {
+    public String getAllRequerant(Model model, @RequestParam(defaultValue = "0") int page) {
 
-        model.addAttribute("requerants", requerantRessources.findAll());
+        model.addAttribute("requerants", requerantRessources.findAll(new PageRequest(page,5)));
+        model.addAttribute("currentPage", page);
         return "requerant/list";
     }
 
 
     @GetMapping("/requerants/delete/{id}")
-    public String deleteRequerant(@PathVariable(name = "id") Long id, Model model) {
+    public String deleteRequerant(@PathVariable(name = "id") Long id) {
         requerantRessources.deleteById(id);
-        model.addAttribute("requerants", requerantRessources.findAll());
-        return "requerant/list";
+
+        return "redirect:/requerants/get";
     }
 
 
@@ -47,19 +49,17 @@ public class RequerantModel {
     }
 
     @PostMapping("/requerants/save")
-    public String saveRequerant( Requerant requerant, Model model) {
+    public String saveRequerant( Requerant requerant) {
 
         requerantRessources.save(requerant);
 
-        model.addAttribute("requerants", requerantRessources.findAll());
-
-        return "requerant/list";
+        return "redirect:/requerants/get";
     }
 
     @GetMapping("/requerants/get/{id}")
     public String getRequerant(@PathVariable(name = "id") Long id, Model model) {
 
         model.addAttribute("requerant", requerantRessources.findById(id));
-        return "requerant/list";
+        return "requerant/view";
     }
 }

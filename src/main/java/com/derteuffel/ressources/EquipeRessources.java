@@ -5,6 +5,8 @@ import com.derteuffel.dao.EvenementRepository;
 import com.derteuffel.entities.Equipe;
 import com.derteuffel.entities.Evenement;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -31,8 +33,8 @@ public class EquipeRessources {
         return equipe;
     }*/
 
-    public List<Equipe> findAll() {
-        return equipeRepository.findAll();
+    public Page<Equipe> findAll(Pageable pageable) {
+        return equipeRepository.findAll(pageable);
     }
 
     public Equipe save(Equipe equipe) {

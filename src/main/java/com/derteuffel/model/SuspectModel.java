@@ -4,13 +4,11 @@ import com.derteuffel.entities.Suspect;
 import com.derteuffel.ressources.SuspectRessources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -27,17 +25,19 @@ public class SuspectModel {
     private SuspectRessources suspectRessources;
 
     @GetMapping("/suspects/get")
-    public String getAllSuspect(Model model) {
+    public String getAllSuspect(Model model, @RequestParam(defaultValue = "0") int page) {
 
-        model.addAttribute("suspects",suspectRessources.findAll() );
+        model.addAttribute("suspects",suspectRessources.findAll(new PageRequest(page,5)) );
+        model.addAttribute("currenPage",page);
         return "suspect/list";
     }
 
 
     @GetMapping("/suspects/get/stat/{status}")
-    public String findByStatus(@PathVariable(name = "status") String status, Model model) {
+    public String findByStatus(@PathVariable(name = "status") String status, Model model, @RequestParam(defaultValue = "0") int page) {
 
-        model.addAttribute("suspects",suspectRessources.findByStatus(status));
+        model.addAttribute("suspects",suspectRessources.findByStatus(status, new PageRequest(page,5)));
+        model.addAttribute("currentPage",page);
         return "suspect/list";
     }
 
@@ -51,34 +51,33 @@ public class SuspectModel {
         return "suspect/edit";
     }
     @PostMapping("/suspects/save")
-    public String save(Model model, Suspect suspect) {
+    public String save(Suspect suspect) {
         suspectRessources.save(suspect);
-        model.addAttribute("suspects", suspectRessources.findAll());
 
-        return "suspect/list";
+
+        return "redirect:/suspects/get";
     }
 
 
     @GetMapping("/suspects/delete/{id}")
-    public String deleteSuspect(@PathVariable(name = "id") Long id, Model model) {
+    public String deleteSuspect(@PathVariable(name = "id") Long id) {
         suspectRessources.deleteById(id);
-
-        model.addAttribute("suspects", suspectRessources.findAll());
-        return "suspect/list";
+        return "redirect:/suspects/get";
     }
 
     @GetMapping("/suspects/get/dept/{departement}")
-    public String findByDepartement(@PathVariable(name = "departement") String departement, Model model) {
-        model.addAttribute("suspects", suspectRessources.findByDepartement(departement));
+    public String findByDepartement(@PathVariable(name = "departement") String departement, Model model, @RequestParam("0") int page) {
+        model.addAttribute("suspects", suspectRessources.findByDepartement(departement, new PageRequest(page, 5)));
+        model.addAttribute("currentPage", page);
 
         return "suspect/list";
     }
 
     @GetMapping("/suspects/get/sit/{situation}")
-    public String getAllBySituation(@PathVariable(name = "situation") String situation, Model model) {
+    public String getAllBySituation(@PathVariable(name = "situation") String situation, Model model,@RequestParam(defaultValue = "0") int page) {
 
-        model.addAttribute("suspects", suspectRessources.findBySituation(situation));
-
+        model.addAttribute("suspects", suspectRessources.findBySituation(situation, new PageRequest(page,5)));
+        model.addAttribute("currentPage", page);
         return"suspect/list";
     }
 

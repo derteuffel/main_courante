@@ -1,23 +1,88 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml">
+      xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
 <head lang="en">
 
-    <title >Listes des Evenements</title>
+    <title >Utilisateurs</title>
     <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
 
 </head>
 <body>
 
-<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-<!--/*/ <th:block th:include="fragments/sideBar :: sideBar"></th:block> /*/-->
+<div layout:fragment="content">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div id="wrapper">
+    <!--/*/ <th:block th:include="fragments/sideBar :: sidebar"></th:block> /*/-->
+    <div id="content-wrapper">
 
-<script  src="../js/jquery.js"
-         th:src="@{/js/jquery.js}"></script>
-<script  src="../js/materialize.min.js"
-         th:src="@{/js/materialize.min.js}"></script>
-<script  src="../js/init.js"
-         th:src="@{/js/init.js}"></script>
+        <div class="container-fluid">
+            <div class="card ">
+                <div class="card-header">
+                    <i class="fas fa-table"></i>
+                   Tableau des utilisateurs relatif a cette evenement</div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-hovered" id="dataTable" width="100%" cellspacing="0">
+                            <thead class="bg-info">
+                            <tr>
+                                <th>Nom</th>
+                                <th>Profession</th>
+                                <th>Date Naissance</th>
+                                <th>Lieu Naissance</th>
+                                <th>N°CNI</th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="user :${users}">
+                                <td th:text="${user.nom}">nom</td>
+                                <td th:text="${user.profession}">profession</td>
+                                <td th:text="${user.date_naissance}">date_naissance</td>
+                                <td th:text="${user.lieu_naissance}">lieu_naissance</td>
+                                <td><a th:href="@{/users/get/}+${user.id}"> <i class="fas fa-fw fa fa-eye"></i></a></td>
+
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <ul class="nav nav-pills ">
+
+                            <li class="nav-item " th:each="i : ${#numbers.sequence(0,users.totalPages-1)}">
+                                <a th:href="@{/users/get(page=${i})}" th:text="${i}" th:classappend="${currentPage}==${i}?'active'"  class="nav-link center"></a>
+                            </li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+    </div>
+</div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/datatables-demo.js"></script>
+    <script src="../js/demo/chart-area-demo.js"></script>
+</div>
 
 </body>
 </html>

@@ -25,8 +25,8 @@ public class PersonelRessources {
     @Autowired
     private PersonnelRepository personnelRepository;
 
-    @Autowired
-    private EvenementRepository evenementRepository;
+   /* @Autowired
+    private EvenementRepository evenementRepository; */
 
 
     public Personnel getPersonel(Long id){
@@ -35,28 +35,20 @@ public class PersonelRessources {
         return personnel.get();
     }
 
-    public List<Personnel> getAllPersonnel(){
+    public Page<Personnel> getAllPersonnel(Pageable pageable){
 
-        return personnelRepository.findAll();
+        return personnelRepository.findAll(pageable);
     }
 
 
-    public List<Personnel> findByStatus(String status){
-        Iterable<Personnel> personnels=personnelRepository.findAll();
-        List<Personnel> result= new ArrayList<>();
-        for (Personnel personnel:personnels) {
-            if (personnel.getStatus().equalsIgnoreCase(status)) {
-                result.add(personnel);
-            }
-        }
-        return result;
+    public Page<Personnel> findByStatus(String status, Pageable pageable){
+       return personnelRepository.findByStatus(status,pageable);
         }
 
 
 
 
     public Personnel addPersonnel(Personnel personnel){
-
 
         return personnelRepository.save(personnel);
     }

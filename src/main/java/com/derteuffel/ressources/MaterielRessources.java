@@ -25,33 +25,19 @@ public class MaterielRessources {
     private MaterielRepository materielRepository;
 
 
-    public List<Materiel> getAllMateriel(){
-        return materielRepository.findAll();
+    public Page<Materiel> getAllMateriel(Pageable pageable){
+        return materielRepository.findAll(pageable);
     }
 
 
-    public List<Materiel> findByType(String type){
-        Iterable<Materiel> materiels=materielRepository.findAll();
-        List<Materiel> result= new ArrayList<>();
-        for (Materiel materiel:materiels) {
-            if (materiel.getType().equalsIgnoreCase(type)) {
-                result.add(materiel);
-            }
-        }
-        return result;
+    public Page<Materiel> findByType(String type, Pageable pageable){
+
+       return materielRepository.findByType(type,pageable);
+
     }
 
-    public List<Materiel> findByStarus(String status){
-        Iterable<Materiel> materiels=materielRepository.findAll();
-        List<Materiel> result= new ArrayList<>();
-        for (Materiel materiel:materiels) {
-            if (materiel.getStatus().equalsIgnoreCase("decharger")) {
-                result.add(materiel);
-            }else if (materiel.getStatus().equalsIgnoreCase("stocker")){
-                result.add(materiel);
-            }
-        }
-        return result;
+    public Page<Materiel> findByStatus(String status, Pageable pageable){
+        return materielRepository.findByStatus(status,pageable);
     }
 
 

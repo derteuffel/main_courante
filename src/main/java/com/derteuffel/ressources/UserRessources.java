@@ -5,6 +5,10 @@ import com.derteuffel.dao.UserRepository;
 import com.derteuffel.entities.Evenement;
 import com.derteuffel.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.stereotype.Service;
 
@@ -30,7 +34,17 @@ public class UserRessources {
         return userRepository.findAll();
     }
 
-    public List<User> findByEquipe(Long id) {
+    @Query("select u from User u where u.equipe.id=:id")
+    public Page<User> findByEquipe(Long id, Pageable pageable, String type) {
+        return userRepository.findByEquipe(id, pageable, type);
+    }
+
+
+    public Page<User> findByEvenements(@Param("id") Long id, String type, Pageable pageable) {
+        return userRepository.findByEvenements(id, type, pageable);
+    }
+
+    /*  public List<User> findByEquipe(Long id) {
         List<User> users=userRepository.findAll();
         List<User> result= new ArrayList<>();
 
@@ -47,5 +61,5 @@ public class UserRessources {
         Optional<Evenement> evenementOptional=evenementRepository.findById(id);
         Set<User> users=evenementOptional.get().getUsers();
         return users;
-    }
+    }*/
 }

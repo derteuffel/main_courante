@@ -3,13 +3,11 @@ package com.derteuffel.model;
 import com.derteuffel.entities.Engin;
 import com.derteuffel.ressources.EnginRessources;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * Created by derteuffel on 01/09/2018.
@@ -24,8 +22,9 @@ public class EnginModel {
 
 
     @GetMapping("/engins/get")
-    public String   getAllEngin(Model model) {
-        model.addAttribute("engins",enginRessources.getAllEngin() );
+    public String   getAllEngin(Model model, @RequestParam(defaultValue = "0") int page) {
+        model.addAttribute("engins",enginRessources.getAllEngin(new PageRequest(page,5)) );
+        model.addAttribute("currentPage",page);
         return "engin/list";
     }
 
@@ -43,19 +42,17 @@ public class EnginModel {
     }
 
     @PostMapping("/engins/save")
-    public String saveEngin( Engin engin, Model model) {
-        model.addAttribute("engins", enginRessources.getAllEngin());
-        return "engin/list";
+    public String saveEngin( Engin engin) {
+       enginRessources.saveEngin(engin);
+        return "redirect:/engins/get";
     }
 
     @GetMapping("/engins/delete/{id}")
-    public String enginDelete(Model model, @PathVariable(required = true, name = "id") Long id){
+    public String enginDelete(@PathVariable(required = true, name = "id") Long id){
 
         enginRessources.deleteEngin(id);
 
-        model.addAttribute("engins", enginRessources.getAllEngin());
-
-        return "engin/list";
+        return "redirect:/engins/get";
     }
 
 }

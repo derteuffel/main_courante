@@ -9,81 +9,91 @@
 </head>
 <body>
 
-<!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
-<!--/*/ <th:block th:include="fragments/sideBar :: sideBar"></th:block> /*/-->
-
 <div layout:fragment="content">
+    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+    <div id="wrapper">
+        <!--/*/ <th:block th:include="fragments/sideBar :: sidebar"></th:block> /*/-->
+        <div id="content-wrapper">
 
-    <h2>Ajouter un nouvel armement</h2>
-
-<div class="row">
-    <form class="col s12" th:object="${armement}" th:action="@{/armements/save}" method="post">
-        <input type="hidden" th:field="*{id}" />
-        <div class="row">
-            <div class="input-field col s6">
-                <i class="material-icons prefix">turned_in</i>
-                <input  th:field="*{marque}" type="text" class="validate">
-                <label >Marque:</label>
+            <div class="container-fluid">
+                <div class="card ">
+                    <div class="card-header">
+                        <i class="fas fa-table"></i>
+                        formulaire d'ajout d'un materiel de type armement</div>
+                    <div class="card-body">
+    <form th:object="${armement}" th:action="@{/armements/save}" method="post">
+                        <input type="hidden" th:field="*{id}" />
+        <div class="form-row">
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault01">Marque:</label>
+                <input type="text" class="form-control" id="validationDefault01" th:field="*{marque}" placeholder="entrer la marque de votre arme" value="Marque" required>
             </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix">device_hub</i>
-                <select  th:field="*{type}">
-                    <option value = ""  selected>Choisissez un type d'armement</option>
-                    <option value="fjhsfjhj">fjdfhshs</option>
-                    <option value="lkfjfdh">dgffgjh</option>
-                </select>
-                <label >Type:</label>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefault02">Couleur:</label>
+                <input type="text" class="form-control" id="validationDefault02" th:field="*{couleur}" placeholder="Ajouter une couleur" value="Couleur" required>
             </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix">color_lens</i>
-                <input th:field="*{couleur}" type="text" class="validate">
-                <label >Couleur:</label>
+            <div class="col-md-4 mb-3">
+                <label for="validationDefaultUsername">Numero:</label>
+                <input type="text" class="form-control" id="validationDefaultUsername" th:field="*{numero}" placeholder="Numero de serie" aria-describedby="inputGroupPrepend2" required>
             </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix">label</i>
-                <input th:field="*{status}" type="text" class="validate">
-                <label >Status</label>
-            </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix">visibility</i>
-                <input th:field="*{numero}" type="text" class="validate">
-                <label >Numero</label>
-            </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix">merge_type</i>
-                <input th:field="*{genre}" type="text" class="validate">
-                <label >Genre</label>
-            </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix">class</i>
-                <input th:field="*{calibre}" type="number" class="validate">
-                <label >Calibre</label>
-            </div>
-            <div class="input-field col s6">
-                <i class="material-icons prefix">person</i>
-                <select  th:field="*{user}">
-                    <option value = "" disabled selected>Choisissez un utilisateur</option>
-                    <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.nom+''+user.prenom}">Users</option>
-                </select>
-                <label >Utilisateur:</label>
-            </div>
-
         </div>
-        <button class="btn waves-effect waves-light  " type="submit" name="action">Sauvegarder
-            <i class="material-icons right">send</i>
-        </button>
+        <div class="form-row">
+            <div class="col-md-6 mb-3">
+                <label for="disabledSelect">Type:</label>
+                <select id="disabledSelect" th:field="*{type}" class="form-control">
+                    <option value="" selected="selected">type de materiel:</option>
+                    <option value="armement">Armement</option>
+                    <option value="engin">Engin</option>
+                    <option value="autre materiel">Autre materiel:</option>
+                </select>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault04">Genre:</label>
+                <input type="text" class="form-control" id="validationDefault04" th:field="*{genre}" placeholder="Genre de votre arme" required>
+            </div>
+            <div class="col-md-3 mb-3">
+                <label for="validationDefault05">Calibre:</label>
+                <input type="number" class="form-control" id="validationDefault05" th:field="*{numero}" placeholder="Indiquer le calibre de votre arme" required>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="disabledSelect1">Proprietaire:</label>
+            <select id="disabledSelect1" th:field="*{user}" class="form-control">
+                <option value="" selected="selected">choisir un proprietaire</option>
+                <option th:each="user: ${users}" th:value="${user.id}" th:text="${user.nom+''+user.profession}">Utilisateurs</option>
+            </select>
+        </div>
+        <button class="btn btn-success" type="submit">Valide</button>
     </form>
+                    </div>
+                </div>
+                </div>
+    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
+            </div>
+        </div>
+    <!-- Scroll to Top Button-->
+    <a class="scroll-to-top rounded" href="#page-top">
+        <i class="fas fa-angle-up"></i>
+    </a>
+    <!-- Bootstrap core JavaScript-->
+    <script src="../vendor/jquery/jquery.min.js"></script>
+    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <!-- Core plugin JavaScript-->
+    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+
+    <!-- Page level plugin JavaScript-->
+    <script src="../vendor/chart.js/Chart.min.js"></script>
+    <script src="../vendor/datatables/jquery.dataTables.js"></script>
+    <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
+
+    <!-- Custom scripts for all pages-->
+    <script src="../js/sb-admin.min.js"></script>
+
+    <!-- Demo scripts for this page-->
+    <script src="../js/demo/datatables-demo.js"></script>
+    <script src="../js/demo/chart-area-demo.js"></script>
 </div>
-    </div>
-
-
-<script  src="../js/jquery.js"
-         th:src="@{/js/jquery.js}"></script>
-<script  src="../js/materialize.min.js"
-         th:src="@{/js/materialize.min.js}"></script>
-<script  src="../js/init.js"
-         th:src="@{/js/init.js}"></script>
 
 </body>
 </html>

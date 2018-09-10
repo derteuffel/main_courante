@@ -20,10 +20,10 @@ public class Personnel extends User {
     public Personnel() {
     }
 
-    public Personnel(String nom, String prenom, String telephone, String NCNI, String profession,
+    public Personnel(String nom, String prenom, String telephone, String NCNI, String profession,String type,
                      String lieu_de_naissance, Date date_naissance, String matricule, String grade,
                      String fonction, Date date_prise_service,String status) {
-        super(nom, prenom, telephone, NCNI, profession, lieu_de_naissance, date_naissance);
+        super(nom, prenom, telephone, NCNI, profession, lieu_de_naissance,type, date_naissance);
         this.matricule = matricule;
         this.grade = grade;
         this.fonction = fonction;

@@ -21,8 +21,8 @@ public class EnginRessources {
     @Autowired
     private EnginRepository enginRepository;
 
-    public List<Engin> getAllEngin(){
-        return enginRepository.findAll();
+    public Page<Engin> getAllEngin(Pageable pageable){
+        return enginRepository.findAll(pageable);
     }
     public Engin getEngin(Long id){
         Optional<Engin> enginOptional=enginRepository.findById(id);

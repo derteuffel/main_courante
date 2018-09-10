@@ -20,7 +20,7 @@ public abstract class User implements Serializable {
     private Long id;
 
     @Column
-    private String nom, prenom, telephone, NCNI,profession, lieu_de_naissance, empreinte_digit;
+    private String nom, prenom, telephone, NCNI,profession, lieu_de_naissance, empreinte_digit, type;
 
     @Column
     private Date date_naissance;
@@ -39,8 +39,9 @@ public abstract class User implements Serializable {
     public User() {
     }
 
-    public User(String nom, String prenom, String empreinte_digit, String NCNI, String profession, String lieu_de_naissance, Date date_naissance) {
+    public User(String nom,String type, String prenom, String empreinte_digit, String NCNI, String profession, String lieu_de_naissance, Date date_naissance) {
         this.nom = nom;
+        this.type=type;
         this.prenom = prenom;
         this.telephone = telephone;
         this.NCNI = NCNI;
@@ -48,6 +49,14 @@ public abstract class User implements Serializable {
         this.lieu_de_naissance = lieu_de_naissance;
         this.date_naissance = date_naissance;
         this.empreinte_digit=empreinte_digit;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getEmpreinte_digit() {

@@ -17,10 +17,10 @@ public class Suspect extends User {
     public Suspect() {
     }
 
-    public Suspect(String nom, String prenom, String telephone, String NCNI, String profession, String lieu_de_naissance,
+    public Suspect(String nom, String prenom, String telephone, String NCNI, String profession, String lieu_de_naissance,String type,
                    Date date_naissance, String arrondissement, String coutume, String departement, String sit_matrimoniale,
                    String nom_pere, String nom_mere, String dist_honorifique, String quartier, String photo, String nationalite, String situation, String status) {
-        super(nom, prenom, telephone, NCNI, profession, lieu_de_naissance, date_naissance);
+        super(nom, prenom, telephone, NCNI, profession, lieu_de_naissance,type, date_naissance);
         this.arrondissement = arrondissement;
         this.coutume = coutume;
         this.departement = departement;

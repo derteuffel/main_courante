@@ -3,6 +3,7 @@ package com.derteuffel.model;
 import com.derteuffel.entities.Personnel;
 import com.derteuffel.ressources.PersonelRessources;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -18,8 +19,9 @@ public class PersonnelModel {
     private PersonelRessources personelRessources;
 
     @GetMapping("/personnels/get")
-    public String personnelList(Model model){
-        model.addAttribute("personnels", personelRessources.getAllPersonnel());
+    public String personnelList(Model model, @RequestParam(defaultValue = "0") int page){
+        model.addAttribute("personnels", personelRessources.getAllPersonnel(new PageRequest(page,5)));
+        model.addAttribute("currentPage",page);
         return "personnel/list";
     }
 
@@ -35,28 +37,25 @@ public class PersonnelModel {
     }
 
     @PostMapping("/personnels/save")
-    public String personnelSaveAndEdit(Model model, @RequestBody Personnel personnel){
+    public String personnelSaveAndEdit(Personnel personnel){
         personelRessources.addPersonnel(personnel);
 
-        model.addAttribute("personnels", personelRessources.getAllPersonnel());
 
-        return "personnel/list";
+        return "redirect:/personnels/get";
     }
 
     @GetMapping("/personnels/delete/{id}")
-    public String personnelDelete(Model model, @PathVariable(required = true, name = "id") Long id){
+    public String personnelDelete(@PathVariable(required = true, name = "id") Long id){
 
         personelRessources.deletePersonnel(id);
 
-        model.addAttribute("personnels", personelRessources.getAllPersonnel());
-
-        return "personnel/list";
+        return "redirect:/personnels/get";
     }
 
     @GetMapping("/personnels/get/stat/{status}")
-    public String personnelGetByStatus(Model model, @PathVariable(required = true, name = "status") String status){
-        model.addAttribute("personnels", personelRessources.findByStatus(status));
-
+    public String personnelGetByStatus(Model model, @PathVariable(required = true, name = "status") String status, @RequestParam(defaultValue = "0") int page){
+        model.addAttribute("personnels", personelRessources.findByStatus(status, new PageRequest(page, 5)));
+        model.addAttribute("currentPage",page);
         return "personnel/list";
     }
 
