@@ -17,7 +17,6 @@ import java.util.List;
 @Repository
 public interface ArmementRepository extends JpaRepository<Armement, Long> {
 
-    @Query("select a from Armement a where a.user.type=:type")
-    Page<Armement> findByUser(@Param("type") String type,Pageable pageable);
+    List<Armement> findAllByUser_Id(Long id);
 
 }

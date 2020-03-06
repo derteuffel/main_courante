@@ -2,6 +2,7 @@ package com.derteuffel.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import java.util.Date;
 
 /**
@@ -9,6 +10,7 @@ import java.util.Date;
  */
 
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class Suspect extends User {
 @Column
     private String arrondissement, coutume, departement, sit_matrimoniale,
@@ -17,24 +19,23 @@ public class Suspect extends User {
     public Suspect() {
     }
 
-    public Suspect(String nom, String prenom, String telephone, String NCNI, String profession, String lieu_de_naissance,String type,
-                   Date date_naissance, String arrondissement, String coutume, String departement, String sit_matrimoniale,
-                   String nom_pere, String nom_mere, String dist_honorifique, String quartier, String photo, String nationalite, String situation, String status) {
-        super(nom, prenom, telephone, NCNI, profession, lieu_de_naissance,type, date_naissance);
+    public Suspect(String nom, String type, String telephone, String avatar, String prenom, String empreinte_digit, String NCNI,
+                   String profession, String lieu_de_naissance, Date date_naissance, String arrondissement, String coutume, String departement, String sit_matrimoniale, String nom_pere,
+                   String nom_mere, String dist_honorifique, String quartier, String photo, String nationalite, String situation, String status) {
+        super(nom, type, telephone, avatar, prenom, empreinte_digit, NCNI, profession, lieu_de_naissance, date_naissance);
         this.arrondissement = arrondissement;
         this.coutume = coutume;
         this.departement = departement;
         this.sit_matrimoniale = sit_matrimoniale;
         this.nom_pere = nom_pere;
-        this.status=status;
-        this.situation=situation;
         this.nom_mere = nom_mere;
         this.dist_honorifique = dist_honorifique;
         this.quartier = quartier;
         this.photo = photo;
         this.nationalite = nationalite;
+        this.situation = situation;
+        this.status = status;
     }
-
 
     public String getSituation() {
         return situation;

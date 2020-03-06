@@ -1,5 +1,7 @@
 package com.derteuffel.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -22,6 +24,7 @@ public class Evenement implements Serializable {
     private String n_ordre, nature, saisine, lieu, commentaire, type;
 
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd hh:mm")
     @Temporal(TemporalType.DATE)
     private Date heure_evenement;
 

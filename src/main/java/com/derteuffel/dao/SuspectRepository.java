@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public interface SuspectRepository extends JpaRepository<Suspect, Long> {
 
-    Page<Suspect> findByStatus(String status, Pageable pageable);
-    Page<Suspect> findBySituation(String situation, Pageable pageable);
-    Page<Suspect> findByDepartement(String departement, Pageable pageable);
+    List<Suspect> findAllByStatus(String status);
+    List<Suspect> findAllBySituation(String situation);
+    List<Suspect> findAllByDepartement(String departement);
 }

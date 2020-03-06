@@ -1,7 +1,6 @@
 package com.derteuffel;
 
 import com.derteuffel.entities.*;
-import com.derteuffel.ressources.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +17,7 @@ import java.util.Date;
 @Service
 public class ServiceLayer {
     private static final Logger LOGGER = LoggerFactory.getLogger(ServiceLayer.class);
-
+/*
     @Autowired
     private PersonelRessources personelRessources;
 
@@ -92,7 +91,7 @@ public class ServiceLayer {
         autre_materielRessources.saveAutre_Materiel(new Autre_Materiel("couteau","arme blanche","gris","stocker","147","egorgeur"));
         autre_materielRessources.saveAutre_Materiel(new Autre_Materiel("couteau","arme blanche","gris","stocker","147","egorgeur"));*/
 
-        LOGGER.info("Initialize test completed");
+        //LOGGER.info("Initialize test completed");
 
-    }
+    //}
 }

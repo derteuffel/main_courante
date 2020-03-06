@@ -1,0 +1,60 @@
+<div class="col-xl-3" th:fragment="sidebar">
+    <!-- MENU SIDEBAR-->
+    <aside class="menu-sidebar3 js-spe-sidebar">
+        <nav class="navbar-sidebar2 navbar-sidebar3">
+            <ul class="list-unstyled navbar__list">
+                <li class="active has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-users"></i>Gestion du personnel
+                        <span class="arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a th:href="@{/personnels/get}">Tout le personnel</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/suspects/get}">Suspects</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/requerants/get}">Requerants</a>
+                        </li>
+                    </ul>
+                </li>
+                <li>
+                    <a th:href="@{/evenements/get}">
+                        <i class="fas fa-th-list"></i>Evenements</a>
+                </li>
+                <li>
+                    <a th:href="@{/equipes/get}">
+                        <i class="fas fa-users"></i>Equipes d'intervention</a>
+                </li>
+                <li>
+                    <a th:href="@{/observations/get}">
+                        <i class="fas fa-eye"></i>Observations</a>
+                </li>
+                <li class="has-sub">
+                    <a class="js-arrow" href="#">
+                        <i class="fas fa-tasks"></i>Gestion du Materiel
+                        <span class="arrow">
+                            <i class="fas fa-angle-down"></i>
+                        </span>
+                    </a>
+                    <ul class="list-unstyled navbar__sub-list js-sub-list">
+                        <li>
+                            <a th:href="@{/armements/get}">Armements</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/autre_materiels/get}">Autres Materiel</a>
+                        </li>
+                        <li>
+                            <a th:href="@{/engins/get}">Engins</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nav>
+    </aside>
+    <!-- END MENU SIDEBAR-->
+</div>

@@ -1,14 +1,11 @@
 package com.derteuffel.model;
 
 import com.derteuffel.entities.Requerant;
-import com.derteuffel.ressources.RequerantRessources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by derteuffel on 02/09/2018.
@@ -17,7 +14,7 @@ import java.util.List;
 @Controller
 public class RequerantModel {
 
-    @Autowired
+    /*@Autowired
     private RequerantRessources requerantRessources;
 
 
@@ -62,4 +59,5 @@ public class RequerantModel {
         model.addAttribute("requerant", requerantRessources.findById(id));
         return "requerant/view";
     }
+    */
 }

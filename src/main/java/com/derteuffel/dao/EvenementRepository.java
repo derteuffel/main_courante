@@ -18,11 +18,9 @@ import java.util.Set;
 @Repository
 public interface EvenementRepository  extends JpaRepository<Evenement, Long>{
 
-    @Query("SELECT event FROM Evenement event join event.users u where  u.id=:id")
-    Page<Evenement> findByUsers(@Param("id") Long id, Pageable pageable);
-    Page<Evenement> findByNature(String nature,Pageable pageable);
-    Page<Evenement> findBySaisine(String saisine, Pageable pageable);
-    @Query("select event from Evenement event where event.equipe.id=:id")
-    Page<Evenement>findByEquipe(@Param("id") Long id, Pageable pageable);
+    List<Evenement> findAllByUsers_Id(Long id);
+    List<Evenement> findAllByNature(String nature);
+    List<Evenement> findAllBySaisine(String saisine);
+    List<Evenement> findAllByEquipe_Id(Long id);
 
 }

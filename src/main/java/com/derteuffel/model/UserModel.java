@@ -1,7 +1,5 @@
 package com.derteuffel.model;
 
-import com.derteuffel.entities.User;
-import com.derteuffel.ressources.UserRessources;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
@@ -10,9 +8,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.List;
-import java.util.Set;
-
 /**
  * Created by derteuffel on 03/09/2018.
  */
@@ -20,7 +15,7 @@ import java.util.Set;
 @Controller
 public class UserModel {
 
-    @Autowired
+  /*  @Autowired
     private UserRessources userRessources;
 
 
@@ -44,4 +39,5 @@ public class UserModel {
 
         return "equipe/user/list";
     }
+    */
 }

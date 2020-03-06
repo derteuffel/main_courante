@@ -1,7 +1,8 @@
 package com.derteuffel.entities;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import org.springframework.format.annotation.DateTimeFormat;
+
+import javax.persistence.*;
 import java.util.Date;
 
 /**
@@ -9,26 +10,28 @@ import java.util.Date;
  */
 
 @Entity
+@PrimaryKeyJoinColumn(name = "id")
 public class Personnel extends User {
 
     @Column
     private String matricule, grade, fonction,status;
 
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     private Date date_prise_service;
 
     public Personnel() {
     }
 
-    public Personnel(String nom, String prenom, String telephone, String NCNI, String profession,String type,
-                     String lieu_de_naissance, Date date_naissance, String matricule, String grade,
-                     String fonction, Date date_prise_service,String status) {
-        super(nom, prenom, telephone, NCNI, profession, lieu_de_naissance,type, date_naissance);
+    public Personnel(String nom, String type, String telephone, String avatar, String prenom, String empreinte_digit, String NCNI, String profession, String lieu_de_naissance,
+                     Date date_naissance, String matricule, String grade, String fonction, String status, Date date_prise_service) {
+        super(nom, type, telephone, avatar, prenom, empreinte_digit, NCNI, profession, lieu_de_naissance, date_naissance);
         this.matricule = matricule;
         this.grade = grade;
         this.fonction = fonction;
+        this.status = status;
         this.date_prise_service = date_prise_service;
-        this.status=status;
     }
 
     public String getStatus() {

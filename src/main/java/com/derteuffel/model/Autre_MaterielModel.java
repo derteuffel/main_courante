@@ -1,14 +1,15 @@
 package com.derteuffel.model;
 
+import com.derteuffel.dao.Autre_MaterielRepository;
+import com.derteuffel.dao.PersonnelRepository;
 import com.derteuffel.entities.Autre_Materiel;
-import com.derteuffel.ressources.Autre_MaterielRessources;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 /**
  * Created by derteuffel on 01/09/2018.
@@ -20,18 +21,20 @@ public class Autre_MaterielModel {
 
 
     @Autowired
-    private Autre_MaterielRessources autre_materielRessources;
+    private Autre_MaterielRepository autre_materielRepository;
+
+    @Autowired
+    private PersonnelRepository personnelRepository;
 
     @GetMapping("/autre_materiels/get")
-    public String   getAllAutre_materiel(Model model,  @RequestParam(defaultValue = "0")int page) {
-        model.addAttribute("autre_materiels",autre_materielRessources.getAllAutre_Materiel(new PageRequest(page,5)) );
-        model.addAttribute("currentPage", page);
+    public String   getAllAutre_materiel(Model model) {
+        model.addAttribute("autre_materiels",autre_materielRepository.findAll(Sort.by(Sort.Direction.DESC,"id")) );
         return "autre_materiel/list";
     }
 
     @GetMapping("/autre_materiels/get/{id}")
     public String getAutre_materiel(Model model, @PathVariable(name = "id") Long id) {
-        model.addAttribute("autre_materiel", autre_materielRessources.getAutre_Materiel(id));
+        model.addAttribute("autre_materiel",autre_materielRepository.getOne(id));
         return "autre_materiel/view";
     }
 
@@ -44,8 +47,32 @@ public class Autre_MaterielModel {
     }
 
     @PostMapping("/autre_materiels/save")
-    public String saveAutre_materiel( Autre_Materiel autre_materiel) {
-        autre_materielRessources.saveAutre_Materiel(autre_materiel);
+    public String saveAutre_materiel(Autre_Materiel autre_materiel, RedirectAttributes redirectAttributes) {
+        autre_materiel.setType_autre("BALLAIS");
+        autre_materiel.setType("AUTRE");
+        autre_materiel.setStatus("EN SERVICE");
+        autre_materielRepository.save(autre_materiel);
+        redirectAttributes.addFlashAttribute("success","Votre ajout a ete fait avec succes");
+
+        return "redirect:/autre_materiels/get";
+    }
+
+    @GetMapping("/autre_materiels/edit/{id}")
+    public String form(Model model, @PathVariable Long id){
+
+        model.addAttribute("users", personnelRepository.findAll());
+        model.addAttribute("autre_materiel", autre_materielRepository.getOne(id));
+
+        return "autre_materiel/update";
+    }
+
+    @PostMapping("/autre_materiels/update")
+    public String updateAutre_materiel(Autre_Materiel autre_materiel, RedirectAttributes redirectAttributes) {
+        autre_materiel.setType_autre("BALLAIS");
+        autre_materiel.setType("AUTRE");
+        autre_materiel.setStatus("EN SERVICE");
+        autre_materielRepository.save(autre_materiel);
+        redirectAttributes.addFlashAttribute("success","Votre mise a jour a ete fait avec succes");
 
         return "redirect:/autre_materiels/get";
     }
@@ -53,7 +80,8 @@ public class Autre_MaterielModel {
     @GetMapping("/autre_materiels/delete/{id}")
     public String autre_materielDelete(@PathVariable(required = true, name = "id") Long id){
 
-        autre_materielRessources.deleteAutre_Materiel(id);
+        autre_materielRepository.deleteById(id
+        );
 
         return "redirect:/autre_materiels/get";
     }

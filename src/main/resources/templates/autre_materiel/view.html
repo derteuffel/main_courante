@@ -1,42 +1,146 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org"
-      xmlns="http://www.w3.org/1999/xhtml" xmlns:layout="http://www.w3.org/1999/xhtml">
-<head lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 
-    <title >Listes des Evenements</title>
-    <!--/*/ <th:block th:include="fragments/headerinc :: head"></th:block> /*/-->
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="au theme template">
+    <meta name="author" content="Hau Nguyen">
+    <meta name="keywords" content="au theme template">
+
+    <!-- Title Page-->
+    <title>Detail</title>
+
+    <!-- Fontfaces CSS-->
+    <link th:href="@{/css/font-face.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/font-awesome-4.7/css/font-awesome.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/font-awesome-5/css/fontawesome-all.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/mdi-font/css/material-design-iconic-font.min.css}" rel="stylesheet" media="all">
+
+    <!-- Bootstrap CSS-->
+    <link th:href="@{/vendor/bootstrap-4.1/bootstrap.min.css}" rel="stylesheet" media="all">
+
+    <!-- Vendor CSS-->
+    <link th:href="@{/vendor/animsition/animsition.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/wow/animate.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/css-hamburgers/hamburgers.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/slick/slick.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/select2/select2.min.css}" rel="stylesheet" media="all">
+    <link th:href="@{/vendor/perfect-scrollbar/perfect-scrollbar.css}" rel="stylesheet" media="all">
+
+    <!-- Main CSS-->
+    <link th:href="@{/css/theme.css}" rel="stylesheet" media="all">
 
 </head>
-<body>
 
-<div layout:fragment="content">
-    <!--/*/ <th:block th:include="fragments/header :: header"></th:block> /*/-->
+<body class="animsition">
+<div class="page-wrapper">
 
-    <!--/*/ <th:block th:include="fragments/sideBar :: sidebar"></th:block> /*/-->
-    <!--/*/ <th:block th:include="fragments/footer :: footer"></th:block> /*/-->
-    <!-- Scroll to Top Button-->
-    <a class="scroll-to-top rounded" href="#page-top">
-        <i class="fas fa-angle-up"></i>
-    </a>
-    <!-- Bootstrap core JavaScript-->
-    <script src="../vendor/jquery/jquery.min.js"></script>
-    <script src="../vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <header th:replace="~{../templates/fragments/header :: header}"></header>
 
-    <!-- Core plugin JavaScript-->
-    <script src="../vendor/jquery-easing/jquery.easing.min.js"></script>
+    <!-- PAGE CONTENT-->
+    <div class="page-container3">
+        <section class="alert-wrap p-t-70 p-b-70">
+            <div class="container">
+                <!-- ALERT-->
+                <div class="alert au-alert-success alert-dismissible fade show au-alert au-alert--70per" role="alert">
+                    <i class="zmdi zmdi-check-circle"></i>
+                    <span class="content">You successfully read this important alert message.</span>
+                    <button class="close" type="button" data-dismiss="alert" aria-label="Close">
+                            <span aria-hidden="true">
+                                <i class="zmdi zmdi-close-circle"></i>
+                            </span>
+                    </button>
+                </div>
+                <!-- END ALERT-->
+            </div>
+        </section>
+        <section>
+            <div class="container">
+                <div class="row">
+                    <div th:replace="~{../templates/fragments/sidebar :: sidebar}"></div>
+                    <div class="col-xl-9">
+                        <!-- PAGE CONTENT-->
+                        <div class="page-content">
+                            <div class="row">
+                                <div class="col-lg-12">
 
-    <!-- Page level plugin JavaScript-->
-    <script src="../vendor/chart.js/Chart.min.js"></script>
-    <script src="../vendor/datatables/jquery.dataTables.js"></script>
-    <script src="../vendor/datatables/dataTables.bootstrap4.js"></script>
+                                    <!-- TOP CAMPAIGN-->
+                                    <div class="top-campaign">
+                                        <h3 class="title-3 m-b-30">Autre Materiel details</h3>
+                                        <div class="table-responsive">
+                                            <table class="table table-top-campaign">
+                                                <tbody>
+                                                <tr>
+                                                    <td>Marque</td>
+                                                    <td th:text="${autre_materiel.marque}">$70,261.65</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Type</td>
+                                                    <td th:text="${autre_materiel.type_autre}">$46,399.22</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Couleur</td>
+                                                    <td th:text="${autre_materiel.couleur}">$35,364.90</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Status</td>
+                                                    <td th:text="${autre_materiel.status}">$20,366.96</td>
+                                                </tr>
+                                                <tr>
+                                                    <td>Numero</td>
+                                                    <td th:text="${autre_materiel.numero_serie}">$10,366.96</td>
+                                                </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <a th:href="@{/autre_materiels/edit/}+${autre_materiel.id}" class="btn btn-outline-primary"><i class="zmdi zmdi-edit"></i> Editer</a>
+                                    </div>
+                                    <!-- END TOP CAMPAIGN-->
+                                    <a th:href="@{/autre_materiels/get}"><i class="zmdi zmdi-long-arrow-left"></i>Retour a la listes des autres materiel</a>
+                                </div>
+                            </div>
 
-    <!-- Custom scripts for all pages-->
-    <script src="../js/sb-admin.min.js"></script>
+                            <div th:replace="~{../templates/fragments/footer :: footer}"  >
+                            </div>
+                        </div>
+                        <!-- END PAGE CONTENT-->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    <!-- END PAGE CONTENT  -->
 
-    <!-- Demo scripts for this page-->
-    <script src="../js/demo/datatables-demo.js"></script>
-    <script src="../js/demo/chart-area-demo.js"></script>
 </div>
 
+<!-- Jquery JS-->
+<script th:src="@{/vendor/jquery-3.2.1.min.js}"></script>
+<!-- Bootstrap JS-->
+<script th:src="@{/vendor/bootstrap-4.1/popper.min.js}"></script>
+<script th:src="@{/vendor/bootstrap-4.1/bootstrap.min.js}"></script>
+<!-- Vendor JS       -->
+<script th:src="@{/vendor/slick/slick.min.js}">
+</script>
+<script th:src="@{/vendor/wow/wow.min.js}"></script>
+<script th:src="@{/vendor/animsition/animsition.min.js}"></script>
+<script th:src="@{/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js}">
+</script>
+<script th:src="@{/vendor/counter-up/jquery.waypoints.min.js}"></script>
+<script th:src="@{/vendor/counter-up/jquery.counterup.min.js}">
+</script>
+<script th:src="@{/vendor/circle-progress/circle-progress.min.js}"></script>
+<script th:src="@{/vendor/perfect-scrollbar/perfect-scrollbar.js}"></script>
+<script th:src="@{/vendor/chartjs/Chart.bundle.min.js}"></script>
+<script th:src="@{/vendor/select2/select2.min.js}">
+</script>
+
+<!-- Main JS-->
+<script th:src="@{/js/main.js}"></script>
+
 </body>
+
 </html>
+<!-- end document-->

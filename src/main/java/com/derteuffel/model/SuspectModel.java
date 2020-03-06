@@ -1,16 +1,11 @@
 package com.derteuffel.model;
 
 import com.derteuffel.entities.Suspect;
-import com.derteuffel.ressources.SuspectRessources;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-
-import java.util.List;
 
 /**
  * Created by derteuffel on 02/09/2018.
@@ -20,7 +15,7 @@ import java.util.List;
 public class SuspectModel {
 
 
-
+/*
     @Autowired
     private SuspectRessources suspectRessources;
 
@@ -86,5 +81,5 @@ public class SuspectModel {
 
         model.addAttribute("suspect", suspectRessources.findById(id));
         return "suspect/view";
-    }
+    }*/
 }

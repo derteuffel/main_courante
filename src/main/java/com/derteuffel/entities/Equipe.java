@@ -2,6 +2,7 @@ package com.derteuffel.entities;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -18,10 +19,10 @@ public class Equipe implements Serializable {
     private Long id;
 
     @Column
-    private String matricule_chef, matricule_chauffeur, matricule_secretaire;
+    private String matricule_chef, matricule_chauffeur, matricule_secretaire,nom;
 
     @Column
-    private String[] matricule_element;
+    private ArrayList<String> matricule_element = new ArrayList<>();
 
     //refence of List for Evenemnt objetct
 
@@ -34,13 +35,25 @@ public class Equipe implements Serializable {
     public Equipe() {
     }
 
-    public Equipe(String[] matricule_element, String matricule_secretaire, String matricule_chauffeur, String matricule_chef) {
-        this.matricule_element = matricule_element;
-        this.matricule_secretaire = matricule_secretaire;
-        this.matricule_chauffeur = matricule_chauffeur;
+
+    public Equipe(String matricule_chef, String matricule_chauffeur, String matricule_secretaire,
+                  String nom, ArrayList<String> matricule_element, List<Evenement> evenements, List<User> users) {
         this.matricule_chef = matricule_chef;
+        this.matricule_chauffeur = matricule_chauffeur;
+        this.matricule_secretaire = matricule_secretaire;
+        this.nom = nom;
+        this.matricule_element = matricule_element;
+        this.evenements = evenements;
+        this.users = users;
     }
 
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
 
     public List<User> getUsers() {
         return users;
@@ -82,11 +95,11 @@ public class Equipe implements Serializable {
         this.matricule_secretaire = matricule_secretaire;
     }
 
-    public String[] getMatricule_element() {
+    public ArrayList<String> getMatricule_element() {
         return matricule_element;
     }
 
-    public void setMatricule_element(String[] matricule_element) {
+    public void setMatricule_element(ArrayList<String> matricule_element) {
 
         this.matricule_element = matricule_element;
     }

@@ -19,7 +19,7 @@ import java.util.Set;
 public interface UserRepository extends JpaRepository<User, Long> {
 
     @Query("SELECT u FROM User u join u.evenements event where  event.id=:id and u.type=:type")
-    Page<User> findByEvenements(@Param("id") Long id, @Param("type")String type, Pageable pageable);
+    List<User> findByEvenements(@Param("id") Long id, @Param("type")String type);
     @Query("select u from User u where u.equipe.id=:id and u.type=:type")
-    Page<User> findByEquipe(@Param("id")Long id, Pageable pageable,@Param("type") String type);
+    List<User> findByEquipe(@Param("id")Long id, @Param("type") String type);
 }

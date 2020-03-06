@@ -16,7 +16,7 @@ import java.util.List;
 @Repository
 public interface MaterielRepository extends JpaRepository<Materiel, Long> {
 
-    Page<Materiel> findByType(String type, Pageable pageable);
-      Page<Materiel> findByStatus(String status, Pageable pageable);
+    List<Materiel> findAllByType(String type);
+      List<Materiel> findAllByStatus(String status);
 
 }

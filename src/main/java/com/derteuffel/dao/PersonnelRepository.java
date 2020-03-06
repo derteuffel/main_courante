@@ -18,7 +18,8 @@ import java.util.Set;
 @Repository
 public interface PersonnelRepository extends JpaRepository<Personnel, Long> {
 
-   public Page<Personnel> findByStatus(String status, Pageable pageable);
+   List<Personnel> findAllByStatus(String status);
+   Personnel findByMatricule(String matricule);
 
 
 }

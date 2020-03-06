@@ -1,5 +1,7 @@
 package com.derteuffel.entities;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
@@ -20,9 +22,11 @@ public abstract class User implements Serializable {
     private Long id;
 
     @Column
-    private String nom, prenom, telephone, NCNI,profession, lieu_de_naissance, empreinte_digit, type;
+    private String nom, prenom, telephone, NCNI,profession, lieu_de_naissance, empreinte_digit, type,avatar;
 
     @Column
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @Temporal(TemporalType.DATE)
     private Date date_naissance;
 
     //reference for Evenement List element
@@ -39,16 +43,25 @@ public abstract class User implements Serializable {
     public User() {
     }
 
-    public User(String nom,String type, String prenom, String empreinte_digit, String NCNI, String profession, String lieu_de_naissance, Date date_naissance) {
+    public User(String nom,String type,String telephone,String avatar, String prenom, String empreinte_digit, String NCNI, String profession, String lieu_de_naissance, Date date_naissance) {
         this.nom = nom;
         this.type=type;
         this.prenom = prenom;
         this.telephone = telephone;
+        this.avatar = avatar;
         this.NCNI = NCNI;
         this.profession = profession;
         this.lieu_de_naissance = lieu_de_naissance;
         this.date_naissance = date_naissance;
         this.empreinte_digit=empreinte_digit;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public String getType() {
